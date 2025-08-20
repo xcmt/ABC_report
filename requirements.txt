@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+SQLAlchemy
+python-docx-template
+lxml
+beautifulsoup4
+python-multipart
+openai
+python-dotenv

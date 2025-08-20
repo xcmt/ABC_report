@@ -1,0 +1,204 @@
+/* --- 全局与布局 --- */
+body {
+    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+    margin: 0;
+    background-color: #f5f7fa;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e4e7ed;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #303133;
+}
+
+.logo i {
+    margin-right: 8px;
+}
+
+/* --- 卡片样式 --- */
+.box-card {
+    border-radius: 8px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- 抽屉样式 --- */
+.drawer-body {
+    padding: 20px;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.guide-page {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px); /* Full height minus header */
+    padding: 20px;
+}
+
+.guide-page .el-page-header {
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.guide-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+/* --- 指南对话框样式 --- */
+.guide-dialog .el-dialog__body {
+    padding: 10px 20px;
+    height: 70vh; /* 设置一个最大高度 */
+}
+
+.guide-content-wrapper {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.guide-content {
+    padding: 10px 30px;
+}
+
+.guide-content h1, .guide-content h2, .guide-content h3, .guide-content h4 {
+    color: #303133;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+}
+
+.guide-content p {
+    line-height: 1.6;
+    color: #606266;
+}
+
+.guide-content ul, .guide-content ol {
+    padding-left: 20px;
+}
+
+.guide-content li {
+    margin-bottom: 0.5em;
+}
+
+.guide-content code {
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.guide-content pre {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.guide-content pre code {
+    padding: 0;
+    background-color: transparent;
+}
+
+.guide-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+.guide-content th, .guide-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.guide-content th {
+    background-color: #f2f2f2;
+}
+
+.guide-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.list-item-card {
+    margin-bottom: 15px;
+}
+
+.list-item-card .el-card__header {
+    padding: 10px 20px;
+    background-color: #fafafa;
+}
+
+.list-item-card .card-header {
+    font-weight: normal;
+    font-size: 14px;
+}
+.guide-page .expand-content {
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+}
+.guide-page .expand-content h4 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333;
+}
+.guide-page .expand-content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #fff;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.vul-library-body {
+    height: 65vh;
+}
+/* 减小特定表单项标签的字体大小 */
+.small-label-form-item .el-form-item__label {
+    font-size: 12px;
+}
+
+
+/* --- 富文本编辑器样式 --- */
+.w-e-full-screen-container {
+    z-index: 9999 !important; /* 确保全屏时在最上层 */
+}

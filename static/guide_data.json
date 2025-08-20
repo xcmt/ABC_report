@@ -1,0 +1,65 @@
+[
+    {
+        "name": "1.1 指南概述",
+        "description": "",
+        "test_guide": "",
+        "risk_level": "中",
+        "recommendation": ""
+    },
+    {
+        "name": "1.2 注意事项",
+        "description": "",
+        "test_guide": "",
+        "risk_level": "中",
+        "recommendation": ""
+    },
+    {
+        "name": "2.1 常用工具列表",
+        "description": "",
+        "test_guide": "",
+        "risk_level": "中",
+        "recommendation": ""
+    },
+    {
+        "name": "3.1 信息搜集",
+        "description": "",
+        "test_guide": "步骤：\n一般来说，对需要渗透的应用系统，进行指纹识别，我们通常先看首页的源码、以及整体的目录结构等信息、以及特有的目录等进行识别判断。\n1.  右键，查看源代码，看源代码里的敏感信息进行指纹识别判断，或者访问特定目录等特有的信息进行识别判断。\n上图可以发现系统使用的是Discuz模板。\n结论：\n这些搜集的信息，有利于后续渗透的实施，针对性的使用已有cve等漏洞进行渗透评估。",
+        "risk_level": "中",
+        "recommendation": ""
+    },
+    {
+        "name": "3.2 漏洞扫描",
+        "description": "",
+        "test_guide": "步骤：\n1.  打开明鉴或者AWVS 扫描器，添加扫描任务，对应用系统进行扫描",
+        "risk_level": "中",
+        "recommendation": ""
+    },
+    {
+        "name": "3.3 信息泄露",
+        "description": "一些网站由于业务需求，可能提供文件查看或下载的功能，如果对用户查看或下载的文件不做限制，则恶意用户就能够查看或下载任意的文件，可以是源代码文件、敏感文件等。",
+        "test_guide": "步骤：\n1.  先通过扫描器对相关网站应该进行漏洞扫描，可能能发现相关漏洞。\n2.  使用burp、或者手工抓取所有的ur- ，以及寻找相关敏感的功能点，比如文件查看出、文件下载处等功能点，手工发送一系列”../”，“./”等字符来遍历高层目录，并且尝试找到系统的配置文件（/etc/passwd, win.ini 等）或者相关应该系统中存在的敏感文件（如：java应用中的../../../ WEB-INF/web.xml）。\n结论\n若我们发送的相关敏感文件的payload能够成功执行，返回相关报文，则存在文件下载漏洞。",
+        "risk_level": "高",
+        "recommendation": "1.  净化数据：对用户传过来的文件名参数进行硬编码或统一编码，对文件类型进行白名单控制，对包含恶意字符或者空字符的参数进行拒绝。\n2.  web应用程序可以使用chroot环境包含被访问的web目录，或者使用绝对路径+参数来访问文件目录，时使其即使越权也在访问目录之内。www目录就是一个chroot应用. 由 chroot创造出的那个根目录，叫做“chroot监狱”（所谓\"监狱\"就是指通过chroot机制来更改某个进程所能看到的根目录，即将某进程限制在指定目录中，保证该进程只能对该目录及其子目录的文件有所动作，从而保证整个服务器的安全，详细具体chroot的用法，可参考：http://blog.csdn.net/frozen_fish/article/details/2244870\n3.  任意文件下载漏洞也有可能是web所采用的中间件的版本低而导致问题的产生，例如ibm的websphere的任意文件下载漏洞，需更新其中间件的版本可修复。\n4.  要下载的文件地址保存至数据库中。\n5.  文件路径保存至数据库，让用户提交文件对应ID下载文件。\n6.  用户下载文件之前需要进行权限判断。\n7.  文件放在web无法直接访问的目录下。\n8.  不允许提供目录遍历服务。\n9.  公开文件可放置在web应用程序下载目录中通过链接进行下载。 参考代码：\njava\npublic String download() throws Exception {\n//获取文件id\nString id = Struts2Utils.getRequest().getParameter(\"id\");\ntry {\n//通过id进行文件查询\nDownloadFile downFile = fileService.findEntityById(Long.parseLong(id));\n// 获取该附件的类型\nbyte[] bt = null;\nbt = downFile.getContent();\nHttpServletResponse res = Struts2Utils.getResponse();\nres.reset();\nres.setContentType(\"application/x-msdownload\");\nres.setHeader(\"Content-Disposition\", \"attachment;filename=\" + URLEncoder.encode(uacFile.getName(), \"UTF8\"));\nOutputStream out = res.getOutputStream();\nout.write(bt);\nout.flush();\nout.close();\n} catch (Exception e1) {\ne1.printStackTrace();\n}\nreturn null;\n}"
+    },
+    {
+        "name": "3.4 信息猜解",
+        "description": "邮件中的重置密码等链接可预测，导致链接可以直接被猜解访问。\n攻击者通过猜测重置密码链接可重置他人账户的密码。",
+        "test_guide": "步骤：\n1.  先按照正常流程重置密码，接收重置密码邮件，分析重置链接的构造。\n2.  通常情况下链接中会使用token参数使得链接具有唯一性，判断该参数是否可预测。如用户名的md5值，用户名+时间戳的md5值等。\n结论\n若发现存在需要收件人点击确认的链接中，无安全随机数，或 token 简单可预测，则存在漏洞。",
+        "risk_level": "高",
+        "recommendation": "重置密码链接中的token使用安全随机数。"
+    },
+    {
+        "name": "3.5 数据猜解",
+        "description": "存在于系统登录页面，利用登陆时输入系统存在的用户名错误密码和不存在的用户名错误密码，返回不同的出错信息可枚举出系统中存在的账号信息。\n攻击者根据Web应用程序返回的上述提示信息即可枚举系统中存在的登录用户名，然后针对枚举出来的登录用户名，对其密码进行暴力破解。",
+        "test_guide": "步骤：\n1.  找到网站或者web系统登录页面；\n2.  在web系统登录页面，通过手工方式，利用系统中存在的用户名和不存在的用户名，密码随意，尝试登录，查看其回显内容。例如：输入存在的用户名admin，回显如下：密码错误；输入不存在的用户名test，回显如下：用户不存在。\n结论\n若发现提示信息不同，则存在漏洞。",
+        "risk_level": "低",
+        "recommendation": "建议对网站登录页面的判断回显信息修改为一致：用户名或密码错误。"
+    },
+    {
+        "name": "3.6 渗透测试",
+        "description": "业务逻辑流程分步骤进行且能越过中间校验步骤直接进行后续操作，导致中间校验等步骤失效。",
+        "test_guide": "步骤：\n1.  首先完成正常的业务逻辑步骤，获取每一个步骤的请求；\n2.  绕过中间步骤，直接访问最后一个或几个验证请求，看是否可绕过。\n结论：\n攻击者可利用该漏洞绕过业务流程检测，进行非法修改他人密码等危险操作。",
+        "risk_level": "高",
+        "recommendation": "建议在不影响业务的前提下，"
+    }
+]

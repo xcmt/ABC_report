@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>渗透测试报告生成工具</title>
+    <!-- 引入 Element Plus 样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css" />
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入 wangeditor 样式 -->
+    <link href="https://unpkg.com/@wangeditor/editor@latest/dist/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app"></div>
+
+    <!-- 引入JS库 -->
+    <script src="https://unpkg.com/@wangeditor/editor@latest/dist/index.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.js"></script>
+    <script src="https://unpkg.com/element-plus/dist/index.full.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <!-- 引入自定义JS (注意顺序) -->
+    <!-- 引入自定义JS (注意顺序) -->
+    <script src="./components/Guide.js?v=1.2"></script>
+    <script src="./components/VulnerabilityLibrary.js?v=1.2"></script>
+    <script src="./components/Home.js?v=1.2"></script>
+    <script src="./router/index.js?v=1.2"></script>
+    <script src="Root.js?v=1.2"></script>
+    <script src="app.js?v=1.2"></script>
+</body>
+</html>
