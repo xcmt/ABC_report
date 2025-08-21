@@ -1,4 +1,4 @@
-# 自动化安全测试报告生成器
+# 自动化安全测试报告生成器（练手）
 
 这是一个基于 FastAPI 和 Vue.js 的 Web 应用程序，旨在简化和自动化安全测试报告的生成过程。
 
@@ -8,7 +8,7 @@
 
 - **模板管理**: 上传和管理 `.docx` 格式的报告模板。
 
-  ![image-20250820155929545](images/image-20250820155929545.png)
+  ![image-20250821134407534](/Users/anhao/Library/Application Support/typora-user-images/image-20250821134407534.png)
 
   ![image-20250820155949531](images/image-20250820155949531.png)
 
