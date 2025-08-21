@@ -47,7 +47,7 @@ pip install -r requirements.txt
 # 必需：您的 API 密钥
 OPENAI_API_KEY="sk-..."
 
-# 可选：自定义 API 的 URL 
+# 可选：API 的 URL 
 OPENAI_API_BASE="https://api.openai.com/v1"
 
 # 可选：自定义模型名称
