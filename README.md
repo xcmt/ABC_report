@@ -8,8 +8,6 @@
 
 - **模板管理**: 上传和管理 `.docx` 格式的报告模板。
 
-  ![image-20250821134407534](/Users/anhao/Library/Application Support/typora-user-images/image-20250821134407534.png)
-
   ![image-20250820155949531](images/image-20250820155949531.png)
 
   ![image-20250820160002324](images/image-20250820160002324.png)
