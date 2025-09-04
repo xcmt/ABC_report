@@ -84,7 +84,7 @@ class ReportResponse(ReportBase):
     targets: List[TargetResponse] = []
     members: List[MemberResponse] = []
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # --- AI 生成相关 ---
 class VulnerabilityGenerationRequest(BaseModel):
@@ -112,7 +112,7 @@ class VulnerabilityTemplateResponse(VulnerabilityTemplateBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class VulnerabilityTemplatePaginatedResponse(BaseModel):
     templates: List[VulnerabilityTemplateResponse]
