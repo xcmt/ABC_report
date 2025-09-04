@@ -31,7 +31,7 @@ class VulnerabilityCreate(VulnerabilityBase):
 class VulnerabilityResponse(VulnerabilityBase):
     id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class TargetBase(BaseModel):
     name: str
@@ -43,7 +43,7 @@ class TargetCreate(TargetBase):
 class TargetResponse(TargetBase):
     id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class MemberBase(BaseModel):
     role: str
@@ -56,7 +56,7 @@ class MemberCreate(MemberBase):
 class MemberResponse(MemberBase):
     id: int
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class ReportBase(BaseModel):
     report_center: Optional[str] = None
