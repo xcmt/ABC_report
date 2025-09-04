@@ -14,7 +14,7 @@ class TemplateResponse(BaseModel):
     placeholders: dict
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # --- 报告和漏洞相关的模型 ---
 class VulnerabilityBase(BaseModel):
